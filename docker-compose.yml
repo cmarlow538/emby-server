@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  emby:
+    image: emby/embyserver:latest
+    container_name: emby_server
+    environment:
+      - UID=${UID}
+      - GID=${GID}
+    ports:
+      - "8096:8096"
+    volumes:
+      - ${CONFIG_PATH}:/config
+      - ${VIDEOS_PATH}:/mnt/videos
+      - ${PICTURES_PATH}:/mnt/pictures
+    restart: unless-stopped
